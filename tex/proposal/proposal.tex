@@ -1,6 +1,7 @@
 \documentclass[journal]{IEEEtran}
 
 \usepackage{cite}
+\usepackage{authblk}
 \usepackage[pdftex]{graphicx}
 \usepackage{amsmath}
 \usepackage{algorithmic}
@@ -13,32 +14,56 @@
 \begin{document}
 
 % paper title
-\title{CS5804 Mini Project}
+% For a simple solution, wrap your title in a font size command and enclose it in braces.
+% This method may not work as expected because \title may not always respect font size changes directly.
+\title{{\Large \textbf{AI in Fintech: Portfolio Formation and Trend Prediction}}}
 
 % author names and affiliations
-\author{First~A.~Author,~\IEEEmembership{Fellow,~IEEE,}
-        Second~B.~Author,~and~Third~C.~Author,~\IEEEmembership{Member,~IEEE}% <-this % stops a space
-}
+\author[1]{Qingsen Zhang}
+\author[1]{Baiyi Zhang}
+\author[1]{Hao Zhang}
+
+% For affiliations, directly adjust the font size using \small, \footnotesize, etc.
+\affil[1]{{\small \{zqs, baiyi, haoz88\}@vt.edu}}
+\affil[1]{{\small Department of Computer Science, Virginia Polytechnic Institute and State University, Falls Church, VA, USA}}
 
 % make the title area
 \maketitle
 
-% abstract
-\begin{abstract}
-These instructions give you guidelines for preparing papers for IEEE Transactions and Journals. 
-\end{abstract}
+% % abstract
+% \begin{abstract}
+% These instructions give you guidelines for preparing papers for IEEE Transactions and Journals. 
+% \end{abstract}
 
-% Note that keywords are not normally used for peerreview papers.
-\begin{IEEEkeywords}
-IEEE, journal, \LaTeX, paper, template.
-\end{IEEEkeywords}
+% % Note that keywords are not normally used for peerreview papers.
+% \begin{IEEEkeywords}
+% IEEE, journal, \LaTeX, paper, template.
+% \end{IEEEkeywords}
 
-\section{Introduction}
+\section{Problem Statement}
 % The very first letter is a 2 line initial drop letter followed by the rest of the first word in caps.
-\IEEEPARstart{T}{his} document\cite{RN2} is a template\cite{RN3} for Microsoft\cite{RN4} Word\cite{RN5} versions\cite{RN6} 6.0 or later.
+\IEEEPARstart{T}{he} advent of cryptocurrencies has revolutionized the financial landscape, offering a new asset class that is characterized by high volatility and potential for significant returns. With over 2000 crypto assets available, investors are faced with the daunting task of portfolio selection and trend prediction, both of which are critical for successful investment strategies.
 
-\section{Conclusion}
-The conclusion goes here.
+Our project aims to address these challenges by leveraging artificial intelligence (AI) in two key tasks:
+\begin{itemize}
+  \item Portfolio Selection: Given a dataset containing the daily price of over 2000 crypto assets from the past 11 years, the first task is to select a subset of these assets to form a portfolio. 
+  \item Trend Prediction: Once a portfolio is formed, the next challenge is to predict its future trend. This is a complex task due to the inherent volatility and unpredictability of crypto markets.
+\end{itemize}
+
+Our approach leverages AI in both horizontal and vertical interactions of the assets to maximize the power of AI in investment. Horizontally, AI is used across different assets to identify the optimal combination for the portfolio. Vertically, AI is used to analyze the time-series data of each asset and predict its future trend.
+
+\section{Methodology}
+\subsection{Data Retrieval}
+In the process of data acquisition, we utilize the API provided by Crypto.io, a free alternative to the commonly used, but paid CoinMarketCap.com API. Our first step involves downloading a comprehensive list of all crypto assets available on Crypto.io. Subsequently, we retrieve data for each asset, which includes daily price, opening and closing values, adjusted closing values, and volume. This data undergoes further processing, where we compute the daily return, momentum, and the 52-week high ratio, among other metrics, for subsequent utilization. This approach allows us to leverage the wealth of information available in the crypto market to inform our AI-driven investment strategies.
+
+\subsection{Portfolio Construction}
+This is a combinatorial optimization problem \cite{lim2022dynamic, bartram2020artificial, chan2002artificial, gunjan2023brief}, which we propose to solve using Constraint Satisfaction Problem (CSP) techniques. CSP techniques are well-suited to problems where a solution requires satisfying a number of constraints. The goal is to find an optimal combination of assets that maximizes expected returns while minimizing risk, subject to various constraints such as budget limits and diversification requirements.
+
+\subsection{Trend Prediction}
+This is a time-series forecasting problem, which can be approached using various AI techniques. These include reinforcement learning methods like Q-search, traditional machine learning algorithms such as Multi-Layer Perceptron (MLP), and deep learning models like Long Short-Term Memory (LSTM) \cite{10007138, 10356083, oshingbesan2022modelfree, zhang2022deep, chen2023deep, hansun2022multivariate, gupta2024forecasting}. The goal is to accurately predict future price trends based on historical data, which can inform investment decisions and risk management strategies.
+
+\subsection{Performance Evaluation}
+The performance of our AI models will be assessed using a variety of financial metrics, including the Sharpe Ratio, Treynor Ratio, Jensen's Alpha, and Maximum Drawdown. These indices are integral to our two-pronged approach in the volatile cryptocurrency market. They offer a comprehensive view of the risk-return trade-off, helping us to understand the performance of our models in different market conditions.
 
 % references section
 \bibliographystyle{IEEEtran}
