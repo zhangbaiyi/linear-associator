@@ -42,10 +42,10 @@ def calculate_sharpe_ratio(returns, risk_free_rate=calculate_daily_risk_free_log
     Returns: The Sharpe ratio.
     """
     excess_returns = returns - risk_free_rate
-    sharpe_ratio = np.mean(excess_returns) / np.std(excess_returns)
+    sharpe_ratio = np.mean(excess_returns) / np.std(excess_returns, axis=0)
     return sharpe_ratio
 
-def calculate_treynor_ratio(returns, risk_free_rate, beta):
+def calculate_treynor_ratio(returns, risk_free_rate, beta=1):
     """
     Calculate the Treynor ratio of a portfolio.
     
@@ -60,7 +60,7 @@ def calculate_treynor_ratio(returns, risk_free_rate, beta):
     treynor_ratio = np.mean(excess_returns) / beta
     return treynor_ratio
 
-def calculate_jensens_alpha(returns, market_returns, risk_free_rate, beta):
+def calculate_jensens_alpha(returns, market_returns, risk_free_rate, beta=1):
     """
     Calculate Jensen's Alpha of a portfolio.
     
